@@ -1,6 +1,6 @@
 node {
 	
-	# Chercher une tag en particulier:
+	// Chercher une tag en particulier:
 	checkout scm: [$class: 'GitSCM', 
 		userRemoteConfigs: [[url: https://bitbucket.org/uqam/report_lpmonitoring.git, 
 		credentialsId: uqamena-BB]], 
