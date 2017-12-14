@@ -35,8 +35,10 @@ node {
 				cd \$WORKSPACE/moodle
 				git add --all report/lpmonitoring 
 				git commit -m "MM-768: corriger composante."
-				git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
-				git push bb UQAM_31_INT:UQAM_31_INT
+				bb=$(git remote -v |grep -c bb)
+				echo ${bb}
+				//git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
+				//git push bb UQAM_31_INT:UQAM_31_INT
 			''')
 
 			sh("echo 'DONE'")
