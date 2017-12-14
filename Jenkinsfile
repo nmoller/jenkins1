@@ -40,6 +40,7 @@ node {
 				then
 				   git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
 				fi
+				git checkout -b UQAM_31_INT
 				git push bb UQAM_31_INT:UQAM_31_INT
 			''')
 
