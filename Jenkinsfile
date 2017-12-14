@@ -1,7 +1,7 @@
 node {
 	
-	def COMMITMSG='Correction de la version du composant report_lpmonitoring'
-	def BRANCH='UQAM_31_INT'
+	def commitmsg = 'Correction de la version du composant report_lpmonitoring'
+	def BRANCH = 'UQAM_31_INT'
 
 	
 
@@ -37,15 +37,8 @@ node {
 			sh('''
 				cd \$WORKSPACE/moodle
 				git add --all report/lpmonitoring 
-				# Nettoyage
-				rm -rf \$WORKSPACE/component
-				git commit -m "${COMMITMSG}"
+				git commit -m "${commitmsg}"
 				git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
-
-				if [ "${CLONE_BRANCH}"  != "${BRANCH}" ]
-				then
-				    git checkout -b ${BRANCH}
-				fi
 				git push bb ${BRANCH}:${BRANCH}
 			''')
 
