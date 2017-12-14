@@ -17,15 +17,15 @@ node {
 				branches: [[name: 'UQAM_31_INT']]
 				], poll: false
 		}
-		sh("rm -rf \$WORKSPACE/report_lpmonitoring/.git")
-		sh("rm -rf \$WORKSPACE/moodle/report/lpmonitoring")
-
 
 	}
 	
 	
 	
 	stage('Build image') {
+		sh("rm -rf \$WORKSPACE/report_lpmonitoring/.git")
+		sh("rm -rf \$WORKSPACE/moodle/report/lpmonitoring")
+
 		sh("echo 'DONE'")
 	}
 	
