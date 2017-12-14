@@ -2,7 +2,7 @@ node {
 
 
 	stage('Preparer composantes') {
-		dir(repport_lpmonitoring) {
+		dir('repport_lpmonitoring') {
 			// Chercher une tag en particulier:
 			checkout scm: [$class: 'GitSCM', 
 				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/report_lpmonitoring.git', 
