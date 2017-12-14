@@ -34,7 +34,7 @@ node {
 			sh("cp -r \$WORKSPACE/report_lpmonitoring \$WORKSPACE/moodle/report/lpmonitoring")
 			//We retrograde without a new installation
 			sh('sed -i "s#2016102600#2016111700#" \$WORKSPACE/moodle/report/lpmonitoring/version.php')
-			shell('''
+			sh('''
 				cd \$WORKSPACE/moodle
 				git add --all report/lpmonitoring 
 				# Nettoyage
