@@ -1,5 +1,9 @@
 node {
+	
+	def COMMITMSG='Correction de la version du composant report_lpmonitoring'
+	def BRANCH='UQAM_31_INT'
 
+	
 
 	stage('Preparer composantes') {
 		dir('repport_lpmonitoring') {
@@ -14,7 +18,7 @@ node {
 			checkout scm: [$class: 'GitSCM', 
 				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
 				credentialsId: 'uqamena-BB']], 
-				branches: [[name: 'UQAM_31_INT']]
+				branches: [[name: "${BRANCH}"]]
 				], poll: false
 		}
 
@@ -23,10 +27,31 @@ node {
 	
 	
 	stage('Build image') {
-		sh("rm -rf \$WORKSPACE/report_lpmonitoring/.git")
-		sh("rm -rf \$WORKSPACE/moodle/report/lpmonitoring")
+		withCredentials([usernamePassword(credentialsId: 'uqamena-BB', usernameVariable: 'BB_USER', passwordVariable: 'BB_PASS')]) {
+	 
+			sh("rm -rf \$WORKSPACE/report_lpmonitoring/.git")
+			sh("rm -rf \$WORKSPACE/moodle/report/lpmonitoring")
+			sh("cp -r \$WORKSPACE/report_lpmonitoring \$WORKSPACE/moodle/report/lpmonitoring")
+			//We retrograde without a new installation
+			sh('sed -i "s#2016102600#2016111700#" \$WORKSPACE/moodle/report/lpmonitoring/version.php')
+			shell('''
+				cd \$WORKSPACE/moodle
+				git add --all report/lpmonitoring 
+				# Nettoyage
+				rm -rf \$WORKSPACE/component
+				git commit -m "${COMMITMSG}"
+				git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
 
-		sh("echo 'DONE'")
+				if [ "${CLONE_BRANCH}"  != "${BRANCH}" ]
+				then
+				    git checkout -b ${BRANCH}
+				fi
+				git push bb ${BRANCH}:${BRANCH}
+			''')
+
+			sh("echo 'DONE'")
+		}
 	}
+	
 	
 }
