@@ -37,7 +37,7 @@ node {
 			sh('''
 				cd \$WORKSPACE/moodle
 				git add --all report/lpmonitoring 
-				git commit -m "${commitmsg}"
+				git commit -m ${commitmsg}
 				git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
 				git push bb ${BRANCH}:${BRANCH}
 			''')
