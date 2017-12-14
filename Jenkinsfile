@@ -1,9 +1,5 @@
 node {
-	
-	def commitmsg = 'Correction de la version du composant report_lpmonitoring'
-	def BRANCH = 'UQAM_31_INT'
 
-	
 
 	stage('Preparer composantes') {
 		dir('report_lpmonitoring') {
@@ -39,7 +35,7 @@ node {
 				git add --all report/lpmonitoring 
 				git commit -m "MM-768: corriger composante."
 				git remote add bb https://\$BB_USER:\$BB_PASS@bitbucket.org/uqam/moodle.git
-				git push bb ${BRANCH}:${BRANCH}
+				git push bb UQAM_31_INT:UQAM_31_INT
 			''')
 
 			sh("echo 'DONE'")
