@@ -1,6 +1,6 @@
 node {
 
-
+	def BRANCH = 'UQAM_31_INT'
 	stage('Preparer composantes') {
 		dir('report_lpmonitoring') {
 			// Chercher une tag en particulier:
