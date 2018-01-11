@@ -19,7 +19,7 @@ node {
 
 	stage('Copier la version de moodle') {
 		steps {
-			dir('moodle') {
+			//dir('moodle') {
 				/*
 				checkout scm: [$class: 'GitSCM', 
 					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
@@ -28,7 +28,7 @@ node {
 					], poll: false
 					*/
 				echo "${BRANCH_M}"
-			}
+			//}
 		}
 	}
 
