@@ -5,6 +5,18 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurper().parseText(json)
 }
 
+@NonCPS
+def treatComponents(def components) {
+	components.each {
+
+    	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
+    	echo "component: ${data.plugins[index].name}"
+    	def path = ${data.plugins[index].dir}
+    	echo "path     : ${path}"
+    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
+    }
+}
+
 def components = []
 // On ajoute les composantes a modifier
 components << 'blocks_uqinfosperso'
@@ -36,14 +48,7 @@ pipeline {
 
 		stage('Preparer composantes') {
 			steps {
-			    components.each {
-
-			    	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
-			    	echo "component: ${data.plugins[index].name}"
-			    	def path = ${data.plugins[index].dir}
-			    	echo "path     : ${path}"
-			    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
-			    }
+			   treatComponents(components) 
 		    }
 		    
 		}
