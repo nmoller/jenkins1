@@ -5,19 +5,6 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurper().parseText(json)
 }
 
-@NonCPS
-def checkoutMoodle(branch) {
-	dir('moodle') {
-			/*
-			checkout scm: [$class: 'GitSCM', 
-				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
-				credentialsId: 'uqamena-BB']], 
-				branches: [[name: "${branch}"]]
-				], poll: false
-				*/
-			echo "${branch}"
-		}
-}
 
 node {
 
@@ -31,7 +18,16 @@ node {
 	def data = jsonParse(json)
 
 	stage('Copier la version de moodle') {
-		checkoutMoodle(${BRANCH_M})
+		dir('moodle') {
+			/*
+			checkout scm: [$class: 'GitSCM', 
+				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
+				credentialsId: 'uqamena-BB']], 
+				branches: [[name: "${branch}"]]
+				], poll: false
+				*/
+			echo "${BRANCH_M}"
+		}
 	}
 
 	stage('Preparer composantes') {
