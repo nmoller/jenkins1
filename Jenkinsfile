@@ -6,7 +6,7 @@ def jsonParse(def json) {
 }
 
 
-node {
+pipeline {
 
 	def components = []
 	// On ajoute les composantes a modifier
@@ -16,10 +16,9 @@ node {
 	def BRANCH_M = 'UQAM_31_INT'
 	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	def data = jsonParse(json)
-
-	stage('Copier la version de moodle') {
-		steps {
-			//dir('moodle') {
+    stages {
+    	stage('Copier la version de moodle') {
+		     //dir('moodle') {
 				/*
 				checkout scm: [$class: 'GitSCM', 
 					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
@@ -30,20 +29,20 @@ node {
 				echo "${BRANCH_M}"
 			//}
 		}
-	}
-
-	stage('Preparer composantes') {
-		
-	    components.each {
-
-	    	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
-	    	echo "component: ${data.plugins[index].name}"
-	    	def path = ${data.plugins[index].dir}
-	    	echo "path     : ${path}"
-	    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
-	    }
-	    
-	}
 	
+
+		stage('Preparer composantes') {
+			
+		    components.each {
+
+		    	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
+		    	echo "component: ${data.plugins[index].name}"
+		    	def path = ${data.plugins[index].dir}
+		    	echo "path     : ${path}"
+		    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
+		    }
+		    
+		}
+    }
 	
 }
