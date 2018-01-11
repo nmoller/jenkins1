@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+
 @NonCPS
 def jsonParse(def json) {
     new groovy.json.JsonSlurper().parseText(json)
@@ -10,7 +11,9 @@ node {
 	stage('Preparer composantes') {
 		def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	    def data = jsonParse(json)
-	    echo "color: ${data.plugins[10].name}"
+
+	    def index = data.plugins.findIndexOf { name -> name =~ /blocks_uqinfosperso/ }
+	    echo "component: ${data.plugins[index].name}"
 	}
 	
 	
