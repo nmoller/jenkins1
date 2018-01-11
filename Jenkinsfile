@@ -6,12 +6,12 @@ def jsonParse(def json) {
 }
 
 @NonCPS
-def checkoutMoodle() {
+def checkoutMoodle(branch) {
 	dir('moodle') {
 			checkout scm: [$class: 'GitSCM', 
 				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
 				credentialsId: 'uqamena-BB']], 
-				branches: [[name: "${BRANCH}"]]
+				branches: [[name: "${branch}"]]
 				], poll: false
 		}
 }
@@ -23,12 +23,12 @@ node {
 	components << 'blocks_uqinfosperso'
 	components << 'local_uqcreecours'
 
-	def BRANCH = 'UQAM_31_INT'
+	def BRANCH_M = 'UQAM_31_INT'
 	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	def data = jsonParse(json)
 
 	stage('Copier la version de moodle') {
-		checkoutMoodle()
+		checkoutMoodle(${BRANCH_M})
 	}
 
 	stage('Preparer composantes') {
