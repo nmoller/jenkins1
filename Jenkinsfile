@@ -12,7 +12,7 @@ def treatComponents(def components) {
 	components.each {
 
     	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
-    	sh('echo "component: ${data.plugins[index].name}")
+    	sh('echo "component: ${data.plugins[index].name}"')
     	def path = ${data.plugins[index].dir}
     	sh('echo "path     : ${path}"')
     	//sh("rm -rf \$WORKSPACE/moodle/${path}")
