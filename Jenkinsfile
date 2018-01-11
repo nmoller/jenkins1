@@ -17,6 +17,15 @@ def treatComponents(def components) {
     }
 }
 
+@NonCPS
+def setComponents() {
+	def components = []
+	// On ajoute les composantes a modifier
+	components << 'blocks_uqinfosperso'
+	components << 'local_uqcreecours'
+	return components
+}
+
 node {
 	def components = []
 	// On ajoute les composantes a modifier
@@ -52,7 +61,7 @@ pipeline {
 
 		stage('Preparer composantes') {
 			steps {
-			   treatComponents(components) 
+			   treatComponents(setComponents()) 
 		    }
 		    
 		}
