@@ -41,7 +41,7 @@ pipeline {
 					checkout scm: [$class: 'GitSCM', 
 					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
 					credentialsId: 'uqamena-BB']], 
-					branches: [[name: "${branch}"]]
+					branches: [[name: "${BRANCH_M}"]]
 					], poll: false
 				}
     		}
