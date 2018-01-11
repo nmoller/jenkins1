@@ -17,18 +17,21 @@ def treatComponents(def components) {
     }
 }
 
-def components = []
-// On ajoute les composantes a modifier
-components << 'blocks_uqinfosperso'
-components << 'local_uqcreecours'
+node {
+	def components = []
+	// On ajoute les composantes a modifier
+	components << 'blocks_uqinfosperso'
+	components << 'local_uqcreecours'
 
-def BRANCH_M = 'UQAM_31_INT'
-def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
-def data = jsonParse(json)
+	def BRANCH_M = 'UQAM_31_INT'
+	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
+	def data = jsonParse(json)
+}
+
 
 
 pipeline {
-	agent none
+	agent any
 
     stages {
         
