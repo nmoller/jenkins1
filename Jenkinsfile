@@ -7,8 +7,12 @@ def jsonParse(def json) {
 
 node {
 
+	def components = []
+	components << 'blocks_uqinfosperso'
+	components << 'local_uqcreecours'
+	
 	def BRANCH = 'UQAM_31_INT'
-	def components = ['blocks_uqinfosperso', 'local_uqcreecours']
+	
 
 	stage('Preparer composantes') {
 		def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
