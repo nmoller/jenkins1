@@ -7,6 +7,8 @@ def jsonParse(def json) {
 
 @NonCPS
 def treatComponents(def components) {
+	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
+	def data = jsonParse(json)
 	components.each {
 
     	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
@@ -27,14 +29,8 @@ def setComponents() {
 }
 
 node {
-	def components = []
-	// On ajoute les composantes a modifier
-	components << 'blocks_uqinfosperso'
-	components << 'local_uqcreecours'
-
 	def BRANCH_M = 'UQAM_31_INT'
-	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
-	def data = jsonParse(json)
+	
 }
 
 
