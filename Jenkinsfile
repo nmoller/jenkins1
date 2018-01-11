@@ -14,7 +14,7 @@ node {
 		def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	    def data = jsonParse(json)
 	    components.each {
-	    	def index = data.plugins.findIndexOf { name -> name =~ /${component}/ }
+	    	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
 	    	echo "component: ${data.plugins[index].name}"
 	    	echo "path     : ${data.plugins[index].dir}"
 	    }
