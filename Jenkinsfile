@@ -18,15 +18,17 @@ node {
 	def data = jsonParse(json)
 
 	stage('Copier la version de moodle') {
-		dir('moodle') {
-			/*
-			checkout scm: [$class: 'GitSCM', 
-				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
-				credentialsId: 'uqamena-BB']], 
-				branches: [[name: "${branch}"]]
-				], poll: false
-				*/
-			echo "${BRANCH_M}"
+		steps {
+			dir('moodle') {
+				/*
+				checkout scm: [$class: 'GitSCM', 
+					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
+					credentialsId: 'uqamena-BB']], 
+					branches: [[name: "${branch}"]]
+					], poll: false
+					*/
+				echo "${BRANCH_M}"
+			}
 		}
 	}
 
