@@ -8,11 +8,14 @@ def jsonParse(def json) {
 @NonCPS
 def checkoutMoodle(branch) {
 	dir('moodle') {
+			/*
 			checkout scm: [$class: 'GitSCM', 
 				userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
 				credentialsId: 'uqamena-BB']], 
 				branches: [[name: "${branch}"]]
 				], poll: false
+				*/
+			echo "${branch}"
 		}
 }
 
@@ -39,7 +42,7 @@ node {
 	    	echo "component: ${data.plugins[index].name}"
 	    	def path = ${data.plugins[index].dir}
 	    	echo "path     : ${path}"
-	    	sh("rm -rf \$WORKSPACE/moodle/${path}")
+	    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
 	    }
 	    
 	}
