@@ -8,12 +8,13 @@ def jsonParse(def json) {
 node {
 
 	def BRANCH = 'UQAM_31_INT'
+	def component = 'blocks_uqinfosperso'
 	stage('Preparer composantes') {
 		def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	    def data = jsonParse(json)
 
-	    def index = data.plugins.findIndexOf { name -> name =~ /blocks_uqinfosperso/ }
-	    echo "component: ${data.plugins[index].name}"
+	    def index = data.plugins.findIndexOf { name -> name =~ /${component}/ }
+	    echo "componentA: ${data.plugins[index].name}"
 	}
 	
 	
