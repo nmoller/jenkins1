@@ -24,7 +24,7 @@ node {
 	components << 'local_uqcreecours'
 
 	def BRANCH_M = 'UQAM_31_INT'
-	def json = readFile(file:'UQAM_30_DEV.json')
+	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
 	def data = jsonParse(json)
 }
 
