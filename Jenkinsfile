@@ -20,9 +20,9 @@ def treatComponents(def components) {
     	echo "path     : ${path}"
     	path = "${env.WORKSPACE}/moodle/" + "${path}"
     	echo "${path}"
-    	//sh("rm -rf ${path}")
+    	
     	def folder = dir "${path}"
-    	deleteDir(folder)
+    	sh("rm -rf")
     }
 }
 
