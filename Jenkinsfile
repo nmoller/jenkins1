@@ -15,7 +15,7 @@ def treatComponents(def components) {
 
     	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
     	echo "component: ${data.plugins[index].name}"
-    	def path = ${data.plugins[index].dir}
+    	def path = "${data.plugins[index].dir}"
     	echo "path     : ${path}"
     	path = "${env.WORKSPACE}/moodle/" + "${path}"
     	sh("rm -rf ${path}")
