@@ -21,7 +21,7 @@ def treatComponents(def components) {
     	path = "${env.WORKSPACE}/moodle/" + "${path}"
     	echo "${path}"
     	dir ("${path}") {
-    		deleteDir
+    		deleteDir {}
     	}
     }
 }
