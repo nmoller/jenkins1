@@ -17,7 +17,7 @@ def treatComponents(def components) {
     	echo "component: ${data.plugins[index].name}"
     	def path = ${data.plugins[index].dir}
     	echo "path     : ${path}"
-    	sh("rm -rf \${env.WORKSPACE}/moodle/${path}")
+    	sh("rm -rf ${env.WORKSPACE}/moodle/${path}")
     }
 }
 
