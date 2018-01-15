@@ -17,7 +17,7 @@ def treatComponents(def components) {
     	echo "component: ${data.plugins[index].name}"
     	def path = ${data.plugins[index].dir}
     	echo "path     : ${path}"
-    	//sh("rm -rf \$WORKSPACE/moodle/${path}")
+    	sh("rm -rf \${env.WORKSPACE}/moodle/${path}")
     }
 }
 
@@ -34,15 +34,18 @@ def setComponents() {
 pipeline {
 	agent any
 
+	environment { 
+        BRANCH_M = 'UQAM_31_INT'
+    }
+
     stages {
-    	def BRANCH_M = 'UQAM_31_INT'
     	stage('Copier la version de moodle') {
     		steps {
     			dir('moodle') {
 					checkout scm: [$class: 'GitSCM',
 					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git',
 					credentialsId: 'uqamena-BB']],
-					branches: [[name: "${BRANCH_M}"]]
+					branches: [[name: "${env.BRANCH_M}"]]
 					], poll: false
 				}
     		}
