@@ -7,7 +7,7 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurper().parseText(json)
 }
 
-@NonCPS
+
 def treatComponents(def components) {
 	def json = readFile(file:'UQAM_30_DEV.json')
 	def data = jsonParse(json)
@@ -21,7 +21,7 @@ def treatComponents(def components) {
     }
 }
 
-@NonCPS
+
 def setComponents() {
 	def components = []
 	// On ajoute les composantes a modifier
