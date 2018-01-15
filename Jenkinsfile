@@ -30,17 +30,12 @@ def setComponents() {
 	return components
 }
 
-node {
-	def BRANCH_M = 'UQAM_31_INT'
-
-}
-
-
 
 pipeline {
 	agent any
 
     stages {
+    	def BRANCH_M = 'UQAM_31_INT'
     	stage('Copier la version de moodle') {
     		steps {
     			dir('moodle') {
