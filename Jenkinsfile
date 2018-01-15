@@ -14,9 +14,9 @@ def treatComponents(def components) {
 	components.each {
 
     	def index = data.plugins.findIndexOf { name -> name =~ /${it}/ }
-    	sh('echo "component: ${data.plugins[index].name}"')
+    	echo "component: ${data.plugins[index].name}"
     	def path = ${data.plugins[index].dir}
-    	sh('echo "path     : ${path}"')
+    	echo "path     : ${path}"
     	//sh("rm -rf \$WORKSPACE/moodle/${path}")
     }
 }
@@ -32,37 +32,34 @@ def setComponents() {
 
 node {
 	def BRANCH_M = 'UQAM_31_INT'
-	
+
 }
 
 
 
 pipeline {
-	agent any
+	agent none
 
     stages {
         /*
     	stage('Copier la version de moodle') {
     		steps {
     			dir('moodle') {
-					checkout scm: [$class: 'GitSCM', 
-					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git', 
-					credentialsId: 'uqamena-BB']], 
+					checkout scm: [$class: 'GitSCM',
+					userRemoteConfigs: [[url: 'https://bitbucket.org/uqam/moodle.git',
+					credentialsId: 'uqamena-BB']],
 					branches: [[name: "${BRANCH_M}"]]
 					], poll: false
 				}
     		}
-		    
 		}
 		*/
-	
+
 
 		stage('Preparer composantes') {
 			steps {
-			   treatComponents(setComponents()) 
+			   treatComponents(setComponents())
 		    }
-		    
 		}
     }
-	
 }
