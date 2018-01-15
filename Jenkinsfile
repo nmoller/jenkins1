@@ -41,7 +41,6 @@ pipeline {
 	agent any
 
     stages {
-        /*
     	stage('Copier la version de moodle') {
     		steps {
     			dir('moodle') {
@@ -53,7 +52,6 @@ pipeline {
 				}
     		}
 		}
-		*/
 
 
 		stage('Preparer composantes') {
