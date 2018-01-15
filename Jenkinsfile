@@ -9,7 +9,8 @@ def jsonParse(def json) {
 
 
 def treatComponents(def components) {
-	def json = readFile(file:'UQAM_30_DEV.json')
+	//def json = readFile(file:'UQAM_30_DEV.json')
+	def json = readJSON file: 'UQAM_30_DEV.json'
 	def data = jsonParse(json)
 	components.each {
 
