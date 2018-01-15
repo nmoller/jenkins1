@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 import groovy.json.JsonSlurper
 
 @NonCPS
@@ -7,7 +9,7 @@ def jsonParse(def json) {
 
 @NonCPS
 def treatComponents(def components) {
-	def json = readFile(file:'../workspace@script/UQAM_30_DEV.json')
+	def json = readFile(file:'UQAM_30_DEV.json')
 	def data = jsonParse(json)
 	components.each {
 
