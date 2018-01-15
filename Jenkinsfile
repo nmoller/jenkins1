@@ -8,7 +8,6 @@ def jsonParse(def json) {
 }
 
 
-@NonCPS
 def treatComponents(def components) {
 	def json = readFile(file:'UQAM_30_DEV.json')
 	def data = jsonParse(json)
