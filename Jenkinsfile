@@ -34,7 +34,7 @@ def setComponents() {
 pipeline {
 	agent any
 
-	environment { 
+	environment {
         BRANCH_M = 'UQAM_31_INT'
     }
 
