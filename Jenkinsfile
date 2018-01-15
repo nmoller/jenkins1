@@ -22,7 +22,7 @@ def treatComponents(def components) {
     	echo "${path}"
     	//sh("rm -rf ${path}")
     	def folder = dir "${path}"
-    	deleteDir folder
+    	deleteDir(folder)
     }
 }
 
