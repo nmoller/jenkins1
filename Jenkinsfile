@@ -1,14 +1,13 @@
 pipeline {
-	agent {
-	    docker {
-            image 'alpine/git'
-            label 'git-builder'
-            args '-v $WORKSPACE:/home/nmoller/code'
-        }
-	}
+	
 	stages {
         stage('Example Build') {
-        agent { node { label 'git-builder' } }
+            agent {
+                docker {
+                    image 'alpine/git'
+                    args '-v $WORKSPACE:/home/nmoller/code'
+                }
+            }
         	steps {
                 sh "useradd -u 127 nmoller"
                 sshagent(['git-test']) {
