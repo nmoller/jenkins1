@@ -5,7 +5,7 @@ pipeline {
 	stages {
         stage('Example Build') {
         	steps {
-                sh "echo 'Hello, Test'"
+                sh "hostname -s"
             }
         }
     }
