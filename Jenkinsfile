@@ -12,7 +12,8 @@ pipeline {
                       mkdir ~/.ssh
                       echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
                       ls -al $SSH_AUTH_SOCK || true
-                      su -p -s /bin/bash -c 'git clone git@bitbucket.org:uqam/moo-inscriptions.git' nmoller
+                      # su -p -s /bin/bash -c 'git clone git@bitbucket.org:uqam/moo-inscriptions.git' nmoller
+                      whoami
                    """)
                 }
             }
