@@ -9,7 +9,7 @@ pipeline {
                 sshagent(['git-test']) {
                    sh 'echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK'
                    sh 'ls -al $SSH_AUTH_SOCK || true'
-                   sh 'ssh -vvv -o StrictHostKeyChecking=no git clone git@bitbucket.org:uqam/moo-inscriptions.git'
+                   sh 'git clone git@bitbucket.org:uqam/moo-inscriptions.git'
                 }
             }
         }
