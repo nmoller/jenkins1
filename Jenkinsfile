@@ -1,8 +1,8 @@
 pipeline {
 	agent {
         docker {
-            image 'alpine/git'
-            args '-v $WORKSPACE:/home/nmoller/code --entrypoint /bin/sh'
+            image 'nmolleruq/php-git'
+            args '-v $WORKSPACE:/home/nmoller/code'
         }
     }
 	stages {
