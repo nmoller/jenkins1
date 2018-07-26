@@ -2,13 +2,13 @@ pipeline {
 	agent {
 	    docker {
 	        image 'alpine/git'
-	        args  '--entrypoint "/bin/ls"'
+	        args  '--entrypoint "/bin/sh"'
 	    }
 	}
 	stages {
         stage('Example Build') {
         	steps {
-                echo 'Hello, Test'
+                sh "echo 'Hello, Test'"
             }
         }
     }
