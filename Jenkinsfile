@@ -8,7 +8,7 @@ pipeline {
 	stages {
         stage('Example Build') {
         	steps {
-                sh "useradd -u 127 nmoller"
+                #sh "useradd -u 127 nmoller"
                 sshagent(['git-test']) {
                    sh(""" 
                       echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
