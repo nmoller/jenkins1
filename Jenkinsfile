@@ -1,11 +1,16 @@
 pipeline {
 	agent {
-	    dockerfile true
+	    docker {
+            image 'alpine/git'
+            label 'git-builder'
+            args '-v $WORKSPACE:/home/nmoller/code'
+        }
 	}
 	stages {
         stage('Example Build') {
+        agent { node { label 'git-builder' } }
         	steps {
-                sh "hostname -s"
+                sh "useradd -u 127 nmoller"
                 sshagent(['git-test']) {
                    sh(""" 
                       echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
