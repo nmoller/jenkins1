@@ -15,7 +15,7 @@ pipeline {
                       echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
                       mkdir ~/.ssh
                       echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
-                      ls -al $SSH_AUTH_SOCK || true
+                      [ -d '/home/nmoller/code/test01'] && rm -f /home/nmoller/code/test01 || echo 'Start'
                       git clone git@bitbucket.org:uqam/moo-inscriptions.git /home/nmoller/code/test01
                    """)
                 }
