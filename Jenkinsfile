@@ -1,12 +1,14 @@
 pipeline {
-	agent {
-        docker {
-            image 'nmolleruq/php-git'
-            args '-v $WORKSPACE:/home/nmoller/code'
-        }
-    }
+    agent none
+	
 	stages {
         stage('Example Build') {
+            agent {
+                docker {
+                    image 'nmolleruq/php-git'
+                    args '-v $WORKSPACE:/home/nmoller/code'
+                }
+            }
         	steps {
                 sshagent(['git-test']) {
                    sh(""" 
