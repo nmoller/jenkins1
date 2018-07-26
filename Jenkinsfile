@@ -7,9 +7,13 @@ pipeline {
         	steps {
                 sh "hostname -s"
                 sshagent(['git-test']) {
-                   sh 'echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK'
-                   sh 'ls -al $SSH_AUTH_SOCK || true'
-                   sh 'git clone git@bitbucket.org:uqam/moo-inscriptions.git'
+                   sh(""" 
+                      echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+                      mkdir ~/.ssh
+                      echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
+                      ls -al $SSH_AUTH_SOCK || true
+                      git clone git@bitbucket.org:uqam/moo-inscriptions.git
+                   """)
                 }
             }
         }
