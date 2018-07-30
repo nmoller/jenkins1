@@ -16,7 +16,8 @@ pipeline {
                       mkdir ~/.ssh
                       echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
                       [ -d '/home/nmoller/code/test01' ] && rm -rf /home/nmoller/code/test01 || echo 'Start'
-                      git clone git@bitbucket.org:uqam/moo-inscriptions.git /home/nmoller/code/test01
+                      git clone git@bitbucket.org:uqam/appbuilder.git /home/nmoller/code/test01
+                      php /home/nmoller/code/test01/bin/builder.php gitStuff -r -l -k
                    """)
                 }
             }
