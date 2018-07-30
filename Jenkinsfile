@@ -28,7 +28,7 @@ pipeline {
             agent any
             environment { 
                 MOODLE_DOCKER_WWWROOT = "${WORKSPACE}/build/moodle35"
-                MOODLE_DOCKER_DB = 'mysqli'
+                MOODLE_DOCKER_DB = 'mysql'
             }
             steps{
                 sh("""
