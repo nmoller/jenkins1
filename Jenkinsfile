@@ -24,5 +24,14 @@ pipeline {
                 }
             }
         }
+        stage('Tests'){
+            agent any
+            steps{
+                sh("""
+
+                """)
+            }
+
+        }
     }
 }
