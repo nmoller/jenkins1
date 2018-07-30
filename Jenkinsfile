@@ -28,7 +28,12 @@ pipeline {
             agent any
             steps{
                 sh("""
-
+                git clone git@github.com:moodlehq/moodle-docker.git compose-bin
+                export MOODLE_DOCKER_WWWROOT=${WORKSPACE}/build/moodle35
+                export MOODLE_DOCKER_DB=mysqli
+                cp compose-bin/config.docker-template.php $MOODLE_DOCKER_WWWROOT/config.php
+                cd ${WORKSPACE}/compose-bin && bin/moodle-docker-compose exec webserver php admin/tool/behat/cli/init.php
+                cd ${WORKSPACE}/compose-bin && bin/moodle-docker-compose exec webserver php admin/tool/behat/cli/run.php --tags=@auth_manual
                 """)
             }
 
