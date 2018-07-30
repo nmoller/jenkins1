@@ -35,8 +35,8 @@ pipeline {
                 [ -d "${WORKSPACE}/compose-bin" ] || git clone git@github.com:moodlehq/moodle-docker.git compose-bin
                 cp compose-bin/config.docker-template.php $MOODLE_DOCKER_WWWROOT/config.php
                 cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose up -d
-                cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose exec webserver php admin/tool/behat/cli/init.php
-                cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose exec webserver php admin/tool/behat/cli/run.php --tags=@auth_manual
+                cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose exec -u 127 webserver php admin/tool/behat/cli/init.php
+                cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose exec -u 127 webserver php admin/tool/behat/cli/run.php --tags=@auth_manual
                 cd ${WORKSPACE}/compose-bin/bin/moodle-docker-compose down
                 """)
             }
