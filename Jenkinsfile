@@ -42,5 +42,18 @@ pipeline {
             }
 
         }
+        post {
+            agent any
+            environment { 
+                MOODLE_DOCKER_WWWROOT = "${WORKSPACE}/build/moodle35"
+                MOODLE_DOCKER_DB = 'mysql'
+            }
+            always{
+               sh("""
+               compose-bin/bin/moodle-docker-compose down
+               """)
+            }
+
+        }
     }
 }
