@@ -31,6 +31,7 @@ pipeline {
                 MOODLE_DOCKER_DB = 'mysql'
             }
             // auth_saml2 requires mcrypt dans php
+            // On verra quoi faire après.
             steps{
                 sh("""
                 [ -d "${WORKSPACE}/compose-bin" ] || git clone git@github.com:moodlehq/moodle-docker.git compose-bin
@@ -39,7 +40,6 @@ pipeline {
                 compose-bin/bin/moodle-docker-compose exec -T webserver rm -rf /var/www/html/auth/saml2
                 compose-bin/bin/moodle-docker-compose exec -T webserver php admin/tool/behat/cli/init.php
                 compose-bin/bin/moodle-docker-compose exec -T webserver php admin/tool/behat/cli/run.php --tags=@auth_manual
-                ${WORKSPACE}/compose-bin/bin/moodle-docker-compose down
                 """)
             }
 
