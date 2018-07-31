@@ -4,12 +4,12 @@ pipeline {
 	stages {
         stage('Example Build') {
             agent {
-                    docker.withDockerServer([credentialsId: 'test-id', uri: 'tcp://chaland.si.uqam.ca:2375']) { 
-                        docker {
-                            image 'nmolleruq/php-git'
-                            args '-v $WORKSPACE:/home/uqamena/code'
-                        }
-                    }
+                docker {
+                    withDockerServer([credentialsId: 'test-id', uri: 'tcp://chaland.si.uqam.ca:2375'])
+                    image 'nmolleruq/php-git'
+                    args '-v $WORKSPACE:/home/uqamena/code'
+                }
+                    
             }
             
         	steps {
