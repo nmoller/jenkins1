@@ -4,10 +4,8 @@ stage('Build') {
             docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {  
                 withCredentials([sshUserPrivateKey(credentialsId: 'git-uqamena-test', keyFileVariable: 'FILE')]) {
                     sh(""" 
-                      ls -al $FILE
+                      ssh -i $FILE git clone git clone git@bitbucket.org:uqam/mod_uqamvideo.git ~/workspace/ENA-build-pipeline/test01
                       ls -altr ~/workspace/ENA-build-pipeline
-                      cat /etc/passwd
-                      whoami
                     """)
                 }
             }
