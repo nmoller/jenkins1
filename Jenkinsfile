@@ -5,7 +5,6 @@ node {
             sh(""" 
                   ls -altr /home/uqamena/code
                   whoami
-                  echo $UID
             """)
         }
     }
