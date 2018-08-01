@@ -1,4 +1,6 @@
 pipeline {
+
+stages{
     stage('Build') {
         agent {
             docker.withServer('tcp://chaland.si.uqam.ca:2375', 'DockerHost-Chaland') {
@@ -15,4 +17,5 @@ pipeline {
            }
         }
     }
+}
 }
