@@ -5,7 +5,7 @@ stage('Build') {
                 withCredentials([sshUserPrivateKey(credentialsId: 'git-uqamena-test', keyFileVariable: 'FILE')]) {
                     sh(""" 
                       hostname
-                      git config core.sshCommand "ssh -i ${FILE} -F /dev/null"
+                      git config --global core.sshCommand "ssh -i ${FILE} -F /dev/null"
                       git config --get core.sshCommand
                     """)
                 }
