@@ -2,10 +2,11 @@ pipeline {
     agent none
 
     stages {
-        stage('Example Build') {
-            node {
-                docker.withServer('tcp://chaland.si.uqam.ca:2375', 'DockerHost-Chaland') {
-                    docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {
+        node {
+            docker.withServer('tcp://chaland.si.uqam.ca:2375', 'DockerHost-Chaland') {
+                docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {
+                    stage('Example Build') {
+            
                         /* do things */
                         sh(""" 
                               ls -altr /home/uqamena/code
