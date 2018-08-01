@@ -4,8 +4,9 @@ stage('Build') {
             docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {  
                 withCredentials([sshUserPrivateKey(credentialsId: 'git-uqamena-test', keyFileVariable: 'FILE')]) {
                     sh(""" 
-                      echo $FILE
+                      ls -al $FILE
                       ls -altr /home
+                      cat /etc/passwd
                       whoami
                     """)
                 }
