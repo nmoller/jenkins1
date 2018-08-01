@@ -3,7 +3,7 @@ node {
         docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {  
             /* do things */
             sh(""" 
-                  ls -altr /home/uqamena/code
+                  ls -altr /home
                   whoami
             """)
         }
