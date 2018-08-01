@@ -1,24 +1,21 @@
-pipeline {
-    agent none
-
-    node {
-        docker.withServer('tcp://chaland.si.uqam.ca:2375', 'DockerHost-Chaland') {
-            docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {
-                stages {
-                    stage('Example Build') {
-            
-                        /* do things */
-                        sh(""" 
-                              ls -altr /home/uqamena/code
-                              whoami
-                              echo $UID
-                        """)
-                    }
+node {
+    docker.withServer('tcp://chaland.si.uqam.ca:2375', 'DockerHost-Chaland') {
+        docker.image('nmolleruq/php-git').withRun('-v $WORKSPACE:/home/uqamena/code') {
+            stages {
+                stage('Example Build') {
+        
+                    /* do things */
+                    sh(""" 
+                          ls -altr /home/uqamena/code
+                          whoami
+                          echo $UID
+                    """)
                 }
             }
         }
     }
 }
+
 
 /*
 pipeline {
