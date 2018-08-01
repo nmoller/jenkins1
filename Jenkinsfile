@@ -5,6 +5,7 @@ stage('Build') {
                 withCredentials([sshUserPrivateKey(credentialsId: 'git-uqamena-test', keyFileVariable: 'FILE')]) {
                     sh(""" 
                       FILE=${FILE}
+                      whoami
                       ls -altr /home/uqamena/code
                     """)
                 }
