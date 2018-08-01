@@ -5,7 +5,7 @@ stage('Build') {
                 withCredentials([sshUserPrivateKey(credentialsId: 'git-uqamena-test', keyFileVariable: 'FILE')]) {
                     sh(""" 
                       ls -al $FILE
-                      ls -altr ~
+                      ls -altr ~/workspace/ENA-build-pipeline
                       cat /etc/passwd
                       whoami
                     """)
