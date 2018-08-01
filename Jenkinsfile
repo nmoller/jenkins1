@@ -8,7 +8,7 @@ stage('Build') {
                       hostname
                       git config --global core.sshCommand "ssh -i ${FILE} -F /dev/null"
                       git config --get core.sshCommand
-                      php -v
+                      /bin/php -v
                     """)
                 }
             }
