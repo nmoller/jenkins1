@@ -18,7 +18,7 @@ pipeline {
                       [ -d "$WORKSPACE/test01" ] && rm -rf "$WORKSPACE/test01" || echo 'Start'
                       [ -d "$WORKSPACE/build" ] && rm -rf "$WORKSPACE/build" || echo 'Start'
                       git clone git@bitbucket.org:uqam/appbuilder.git test01
-                      php /home/uqamena/code/test01/bin/builder.php gitStuff -r -l -k ${WORKSPACE}/test01/config/moodle35-uqam.yml
+                      php ${WORKSPACE}/test01/bin/builder.php gitStuff -r -l -k ${WORKSPACE}/test01/config/moodle35-uqam.yml
                       mv *.log build/moodle35
                    """)
                 }
