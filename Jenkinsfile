@@ -15,10 +15,10 @@ pipeline {
                       echo SSH_AUTH_SOCK=$SSH_AUTH_SOCK
                       mkdir ~/.ssh
                       echo 'Host *\n    StrictHostKeyChecking no' > ~/.ssh/config
-                      [ -d '/home/uqamena/code/test01' ] && rm -rf /home/uqamena/code/test01 || echo 'Start'
-                      [ -d '/home/uqamena/code/build' ] && rm -rf /home/uqamena/code/build || echo 'Start'
-                      git clone git@bitbucket.org:uqam/appbuilder.git /home/uqamena/code/test01
-                      php /home/uqamena/code/test01/bin/builder.php gitStuff -r -l -k /home/uqamena/code/test01/config/moodle35-uqam.yml
+                      [ -d "$WORKSPACE/test01" ] && rm -rf "$WORKSPACE/test01" || echo 'Start'
+                      [ -d "$WORKSPACE/build" ] && rm -rf "$WORKSPACE/build" || echo 'Start'
+                      git clone git@bitbucket.org:uqam/appbuilder.git test01
+                      php ${WORKSPACE}/test01/bin/builder.php gitStuff -r -l -k ${WORKSPACE}/test01/config/moodle35-uqam.yml
                       mv *.log build/moodle35
                    """)
                 }
@@ -34,12 +34,12 @@ pipeline {
             // On verra quoi faire après.
             steps{
                 sh("""
-                [ -d "${WORKSPACE}/compose-bin" ] || git clone git@github.com:moodlehq/moodle-docker.git compose-bin
+                [ -d "${WORKSPACE}/compose-bin" ] || git clone https://github.com/moodlehq/moodle-docker.git compose-bin
                 cp compose-bin/config.docker-template.php $MOODLE_DOCKER_WWWROOT/config.php
                 compose-bin/bin/moodle-docker-compose up -d
                 compose-bin/bin/moodle-docker-compose exec -T webserver rm -rf /var/www/html/auth/saml2
-                compose-bin/bin/moodle-docker-compose exec -T webserver php admin/tool/behat/cli/init.php
-                compose-bin/bin/moodle-docker-compose exec -T webserver php admin/tool/behat/cli/run.php --tags="@mod_quiz,~@_file_upload,~@_alert"
+                compose-bin/bin/moodle-docker-compose exec -T webserver php /var/www/html/admin/tool/behat/cli/init.php
+                compose-bin/bin/moodle-docker-compose exec -T webserver php /var/www/html/admin/tool/behat/cli/run.php --tags="@mod_quiz,~@_file_upload,~@_alert"
                 """)
             }
 
