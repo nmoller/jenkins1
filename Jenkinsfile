@@ -34,7 +34,7 @@ pipeline {
             // On verra quoi faire après.
             steps{
                 sh("""
-                [ -d "${WORKSPACE}/compose-bin" ] || git clone git@github.com:moodlehq/moodle-docker.git compose-bin
+                [ -d "${WORKSPACE}/compose-bin" ] || git clone https://github.com/moodlehq/moodle-docker.git compose-bin
                 cp compose-bin/config.docker-template.php $MOODLE_DOCKER_WWWROOT/config.php
                 compose-bin/bin/moodle-docker-compose up -d
                 compose-bin/bin/moodle-docker-compose exec -T webserver rm -rf /var/www/html/auth/saml2
