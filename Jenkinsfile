@@ -39,7 +39,7 @@ pipeline {
                 compose-bin/bin/moodle-docker-compose up -d
                 compose-bin/bin/moodle-docker-compose exec -T webserver rm -rf /var/www/html/auth/saml2
                 compose-bin/bin/moodle-docker-compose exec -T webserver php /var/www/html/admin/tool/behat/cli/init.php
-                compose-bin/bin/moodle-docker-compose exec -T webserver php /var/www/html/admin/tool/behat/cli/run.php --tags="@mod_quiz,~@_file_upload,~@_alert"
+                compose-bin/bin/moodle-docker-compose exec -T webserver php /var/www/html/admin/tool/behat/cli/run.php --tags="@mod_quiz"
                 """)
             }
 
