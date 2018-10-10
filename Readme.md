@@ -1,3 +1,31 @@
+# Builder image
+
+```
+docker build --tag nmoller/builder:0.0.1 .
+```
+
+Tester avant d'intégrer multistage build
+```
+docker run -it --rm -v /home/nmoller/.ssh:/home/uqamena/.ssh \
+-v $(pwd)/test01:/home/uqamena/build \
+--name builder nmoller/builder:0.0.1
+```
+
+Spécifier le fichier de config
+```
+docker run -it --rm -v /home/nmoller/.ssh:/home/uqamena/.ssh \
+-v $(pwd)/test01:/home/uqamena/build \
+--name builder nmoller/builder:0.0.1 MM-535.json
+```
+
+Seulement modifier un package (`theme_uqam`)
+```
+docker run -it --rm -v /home/nmoller/.ssh:/home/uqamena/.ssh \
+-v $(pwd)/test01:/home/uqamena/build \
+--name builder nmoller/builder:0.0.1 MM-535.json theme_uqam
+```
+
+
 # Running Jenkins inside docker
 
 ### Instructions de base
@@ -59,3 +87,5 @@ http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
 Dans le container, en tant que jenkins, faire une clone d'un dépôt github pour ajouter la clé du serveur aux hosts connus.
 
 Quand on utilise docker-compose dans le container... les volumes sont vides...
+
+Le uid de l'utilisateur jenkins doit être ajusté en conséquence dans le dockerfile.
