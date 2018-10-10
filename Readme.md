@@ -4,6 +4,15 @@
 docker build --tag nmoller/builder:0.0.1 .
 ```
 
+Valider votre `~/.ssh/config` il devra contenir un bloc:
+```
+Host bitbucket.org
+        HostName bitbucket.org
+        User [your_username]
+        IdentityFile ~/.ssh/[private_key_file_used_in_bb]
+        IdentitiesOnly yes
+```
+
 Tester avant d'intégrer multistage build
 ```
 docker run -it --rm -v /home/nmoller/.ssh:/home/uqamena/.ssh \
